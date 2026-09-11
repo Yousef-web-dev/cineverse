@@ -84,7 +84,11 @@ const SignUpPage = () => {
     } else {
       const birthDate = new Date(formData.birthDate);
       const today = new Date();
-      const age = today.getFullYear() - birthDate.getFullYear();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
 
       if (age < 13) {
         newErrors.birthDate = "You must be at least 13 years old";

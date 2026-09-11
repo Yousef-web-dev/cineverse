@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { initSmoothScroll } from "./library/SmoothScroll";
 import { initDragScroll } from "./library/useSmoothDragScroll";
-import { Routes, Route } from "react-router-dom"; 
+import { Routes, Route, useLocation } from "react-router-dom"; 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -12,12 +12,12 @@ import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import MovieDetailPageHome from "./pages/MovieDetailPageHome";
-
 import SeatSelector from "./pages/SeatSelector";
 import ScrollToTop from "./components/ScrollToTop";
 
-
 const App = () => {
+  const location = useLocation();
+
   useEffect(() => {
     const lenis = initSmoothScroll();
     const removeDragEvents = initDragScroll(lenis);
@@ -27,11 +27,12 @@ const App = () => {
       removeDragEvents();
     };
   }, []);
+
   return (
     <>
-    <ScrollToTop />
+      <ScrollToTop />
       <AnimatePresence mode="wait">
-        <Routes>
+        <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -45,9 +46,6 @@ const App = () => {
 
           <Route path="/movies/:id/seat/:slot" element={<SeatSelector />} />
           <Route path="/movies/:id/seat-selector/:slot" element={<SeatSelector />} />
-
-
-          
         </Routes>
       </AnimatePresence>
     </>
