@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { signUpStyles } from "../assets/dummyStyles";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +18,7 @@ import {
 } from "lucide-react";
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
     username: "",
@@ -93,7 +95,7 @@ const SignUpPage = () => {
   };
 
   const goBack = () => {
-    window.history.back();
+    navigate(-1);
   };
 
   const handleSubmit = (e) => {
@@ -103,10 +105,6 @@ const SignUpPage = () => {
       return;
     }
 
-    console.log("Form Data:", {
-      ...formData,
-      password: "***" + formData.password.slice(-2),
-    });
     setIsLoading(true);
 
     setTimeout(() => {
@@ -114,7 +112,7 @@ const SignUpPage = () => {
       toast.success("Account created successfully! Redirecting to Login...");
 
       setTimeout(() => {
-        window.location.href = "/login";
+        navigate("/login");
       }, 2000);
     }, 1500);
   };
@@ -384,9 +382,9 @@ const SignUpPage = () => {
               <div className={signUpStyles.loginContainer}>
                 <p className={signUpStyles.loginText}>
                   Already have an account?{" "}
-                  <a href="/login" className={signUpStyles.loginLink}>
+                  <Link to="/login" className={signUpStyles.loginLink}>
                     Sign In
-                  </a>
+                  </Link>
                 </p>
               </div>
             </form>
