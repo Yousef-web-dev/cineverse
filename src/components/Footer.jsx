@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { footerStyles } from "../assets/dummyStyles";
 
 // استيراد الأيقونات من react-icons و lucide-react
@@ -140,10 +141,10 @@ const Footer = () => {
             <ul className={footerStyles.linksList}>
               {links.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className={footerStyles.linkItem}>
+                  <Link to={link.href} className={footerStyles.linkItem}>
                     <span className={footerStyles.linkDot} />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -158,10 +159,10 @@ const Footer = () => {
             <ul className={footerStyles.linksList}>
               {genreLinks.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className={footerStyles.linkItem}>
+                  <Link to={link.href} className={footerStyles.linkItem}>
                     <span className={footerStyles.linkDot} />
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

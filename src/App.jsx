@@ -14,6 +14,7 @@ import MovieDetailPage from "./pages/MovieDetailPage";
 import MovieDetailPageHome from "./pages/MovieDetailPageHome";
 
 import SeatSelector from "./pages/SeatSelector";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
   }, []);
   return (
     <>
+    <ScrollToTop />
       <AnimatePresence mode="wait">
         <Routes>
           <Route path="/" element={<Home />} />
